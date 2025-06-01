@@ -3,9 +3,18 @@
 # 使用法: ./convert_ai_directory.sh /path/to/directory [出力先ディレクトリ]
 # AIファイルをPNGに変換し、背景を透過させるスクリプト
 
+# 設定ファイルの読み込み
+CONFIG_FILE="$(dirname "$0")/config.sh"
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "❌ エラー: 設定ファイル '$CONFIG_FILE' が見つかりません"
+  exit 1
+fi
+source "$CONFIG_FILE"
+
 # 引数のチェック
 if [ $# -lt 1 ]; then
   echo "❌ 使用法: $0 <入力ディレクトリ> [出力ディレクトリ]"
+  echo "   デフォルト入力ディレクトリ: $DEFAULT_INPUT_DIR"
   exit 1
 fi
 

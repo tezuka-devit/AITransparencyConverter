@@ -3,6 +3,14 @@
 # AIファイルをPNGに変換して背景を透過するプロセッサースクリプト
 # convert_ai_directory.shから呼び出されます
 
+# 設定ファイルの読み込み
+CONFIG_FILE="$(dirname "$0")/config.sh"
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "❌ エラー: 設定ファイル '$CONFIG_FILE' が見つかりません"
+  exit 1
+fi
+source "$CONFIG_FILE"
+
 # 引数を取得
 AI_FILE="$1"
 OUTPUT_DIR="$2"
@@ -18,10 +26,10 @@ out_png="${OUTPUT_DIR}/${base_name}.png"
 echo -e "\n🖼️ 変換中: $(basename "$AI_FILE")"
 
 # ステップ1: AI → PNG（白背景にしてから削除）
-magick "$AI_FILE" -density 300 -background white -alpha remove -alpha off "$tmp_png"
+magick "$AI_FILE" -density ${IMAGE_DENSITY} -background white -alpha remove -alpha off "$tmp_png"
 
 # ステップ2: 白背景を透過
-magick "$tmp_png" -fuzz 50% -transparent white "$out_png"
+magick "$tmp_png" -fuzz ${FUZZ_FACTOR}% -transparent white "$out_png"
 
 # 一時ファイル削除
 rm "$tmp_png"
