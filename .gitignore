@@ -1,0 +1,6 @@
+# 画像データディレクトリを無視
+pictograph_data/
+pictograph_data_converted/
+
+# macOS system files
+.DS_Store
