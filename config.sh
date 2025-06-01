@@ -5,7 +5,6 @@
 
 # 基本ディレクトリパス
 export SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export DEFAULT_INPUT_DIR="${SCRIPT_DIR}/pictograph_data"
 
 # 変換関連の設定
 export IMAGE_DENSITY=300

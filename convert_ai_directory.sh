@@ -14,7 +14,6 @@ source "$CONFIG_FILE"
 # 引数のチェック
 if [ $# -lt 1 ]; then
   echo "❌ 使用法: $0 <入力ディレクトリ> [出力ディレクトリ]"
-  echo "   デフォルト入力ディレクトリ: $DEFAULT_INPUT_DIR"
   exit 1
 fi
 
